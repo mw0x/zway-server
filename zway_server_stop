@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PID_FILE=/var/run/zway_server.pid
+
+if [ ! -f PID_FILE ]; then
+echo "no pid file"
+exit
+fi
+
+SERVER_PID=$(<"$PID_FILE")
+
+kill -s USR1 $SERVER_PID
+
+if [ $? == 0 ]; then
+
+echo Daemon finished
+
+fi

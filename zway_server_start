@@ -1,0 +1,21 @@
+#!/bin/bash
+
+PID_FILE=/var/run/zway_server.pid
+
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`
+
+./server -d -a $1
+
+wait $!
+
+if [ $? == 0 ]; then
+
+SERVER_PID=$(<"$PID_FILE")
+
+echo Daemon started successfully! pid=$SERVER_PID
+
+else
+
+echo Failed to start daemon!
+
+fi
